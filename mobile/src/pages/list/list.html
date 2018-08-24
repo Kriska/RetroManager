@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Retrospective Manager</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <form #submitForm="ngForm" (ngSubmit)="submitData2(ngForm)">
+        <ion-row>
+            <ion-col>
+                <ion-list inset>
+                    <ion-item>
+                        <ion-label>Sprint Weather</ion-label>
+                        <ion-select name="weather" required [(ngModel)]="weather">
+                            <ion-option value="sun">Sunny</ion-option>
+                            <ion-option value="sunAndClouds">Sunny with clouds</ion-option>
+                            <ion-option value="cloud">Cloudy</ion-option>
+                            <ion-option value="rain">Rainy</ion-option>
+                            <ion-option value="storm">Stormy</ion-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="What did we do well?" name="good" type="text"
+                                   [(ngModel)]="good"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="What went wrong?" name="bad" id="bad" type="text"
+                                   [(ngModel)]="bad"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="What should we do differently" name="different" id="different"
+                                   type="text" [(ngModel)]="different"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input placeholder="Out of team control" name="outOfControl" id="outOfControl" type="text"
+                                   [(ngModel)]="outOfControl"></ion-input>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                <button ion-button class="submit-btn" full type="submit" [disabled]="!submitForm.form.valid">Submit
+                </button>
+            </ion-col>
+        </ion-row>
+    </form>
+</ion-content>
