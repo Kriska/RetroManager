@@ -1,26 +1,24 @@
-<ion-header>
+<ion-header class="nav">
     <ion-navbar>
-        <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-        </button>
-        <ion-title>Login</ion-title>
+        <ion-title class="nav">Login</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <form #signForm="ngForm" (ngSubmit)="login(signForm.value)">
+	<img class="loginLogo" src="../../assets/imgs/login.png"/>
+    <form class="loginForm" #signForm="ngForm" (ngSubmit)="login(signForm.value)">
         <ion-item>
             <ion-label floating>Username</ion-label>
-            <ion-input type="text" name="userName" ngModel></ion-input>
+            <ion-input class="field" type="text" name="userName" ngModel></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label floating>Password</ion-label>
-            <ion-input type="password" name="password" ngModel></ion-input>
+            <ion-input class="field" type="password" name="password" ngModel></ion-input>
         </ion-item>
 
         <div padding>
-            <button ion-button color="primary" block type="submit">Log In</button>
+            <button ion-button class="loginBtn" round type="submit">Log In</button>
         </div>
     </form>    
 </ion-content>

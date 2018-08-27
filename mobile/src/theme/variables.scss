@@ -34,11 +34,11 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  primary:    #26478d,
+  pink: #ba2f7d,
+  purple: #632678,
+  blue:  #406eb3,
+  viollete: #982881
 );
 
 
@@ -86,3 +86,7 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+$text-input-highlight-color-valid:transparent;
+$text-input-highlight-color-invalid:transparent;
+$text-input-placeholder-color:#000;

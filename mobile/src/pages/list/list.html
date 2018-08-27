@@ -1,45 +1,71 @@
 <ion-header>
     <ion-navbar>
-        <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-        </button>
         <ion-title>Retrospective Manager</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
+	<div class="greeting"><ion-label> Hello,  <span id="user" color="red"> {{userName}} </span></ion-label>
+	<ion-label> Rate your latest sprint:</ion-label> </div>
     <form #submitForm="ngForm" (ngSubmit)="submitData(submitForm.value)">    
         <ion-row>
             <ion-col>
                 <ion-list inset>
-                    <ion-item>
-                        <ion-label>Sprint Weather</ion-label>
-                        <ion-select name="sprintWeather" required ngModel>
+                    <ion-list radio-group name="sprintWeather" ngModel>
+					<ion-item>
+					
+                       <!-- <ion-select name="sprintWeather" required ngModel>
                             <ion-option value="sun">Sunny</ion-option>
                             <ion-option value="sunAndClouds">Sunny with clouds</ion-option>
                             <ion-option value="cloud">Cloudy</ion-option>
                             <ion-option value="rain">Rainy</ion-option>
                             <ion-option value="storm">Stormy</ion-option>
-                        </ion-select>
+                        </ion-select> -->
+						
+                        <ion-label color="pink"> <ion-icon name="sunny"></ion-icon> Sunny</ion-label>
+						<ion-radio value="sunny"></ion-radio>
+						</ion-item>
+						<ion-item>
+							<ion-label color="pink" > <ion-icon name="partly-sunny"></ion-icon> Sunny with clouds</ion-label>
+							<ion-radio value="sunnyAndCloudy"></ion-radio>
+						</ion-item>
+						<ion-item>
+							<ion-label color="pink" > <ion-icon name="cloudy"></ion-icon> Cloudy </ion-label>
+							<ion-radio value="cloudy"></ion-radio>
+						</ion-item>
+						<ion-item>
+							<ion-label color="pink" > <ion-icon name="rainy"></ion-icon> Rainy </ion-label>
+							<ion-radio value="rainy"></ion-radio>
+						</ion-item>
+						<ion-item>
+							<ion-label color="pink" > <ion-icon name="thunderstorm"></ion-icon> Stormy </ion-label>
+							<ion-radio value="stormy"></ion-radio>
+						</ion-item>
+						
+                    </ion-list>
+				
+                    <ion-item>
+						<ion-label color="blue" text-wrap stacked class="lbl"> <ion-icon name="square"></ion-icon> What did we do well? </ion-label>
+                        <ion-textarea name="didWell" type="text" autocorrect autoresize ngModel></ion-textarea>
                     </ion-item>
                     <ion-item>
-                        <ion-input placeholder="What did we do well?" name="didWell" type="text" ngModel></ion-input>
+						<ion-label color="purple" text-wrap stacked class="lbl"> <ion-icon name="square"></ion-icon> What went wrong?</ion-label>
+                        <ion-textarea name="wentWrong" id="bad" type="text" autocorrect autoresize ngModel></ion-textarea>
                     </ion-item>
                     <ion-item>
-                        <ion-input placeholder="What went wrong?" name="wentWrong" id="bad" type="text" ngModel></ion-input>
+						<ion-label color="viollete" text-wrap text-wrap stacked class="lbl"> <ion-icon name="square"></ion-icon> What should we do differently?</ion-label>
+                        <ion-textarea name="doDifferently" id="different" type="text" autocorrect autoresize ngModel></ion-textarea>
                     </ion-item>
                     <ion-item>
-                        <ion-input placeholder="What should we do differently" name="doDifferently" id="different" type="text" ngModel></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-input placeholder="Out of team control" name="outOfTeamControl" id="outOfControl" type="text" ngModel></ion-input>
+						<ion-label color="pink" text-wrap stacked class="lbl"> <ion-icon name="square"></ion-icon> Out of team control: </ion-label>
+                        <ion-textarea name="outOfTeamControl" id="outOfControl" type="text" autocorrect autoresize  ngModel></ion-textarea>
                     </ion-item>
                 </ion-list>
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col>
-                <button ion-button class="submit-btn" full type="submit" [disabled]="!submitForm.form.valid">Submit</button>
+                <button ion-button round class="submit-btn" full type="submit" [disabled]="!submitForm.form.valid">Submit</button>
             </ion-col>
         </ion-row>
     </form>
