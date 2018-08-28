@@ -19,11 +19,11 @@ export class ListPage {
 
     public submitData(data:any) {
         alert("About to make http");
-		//TODO: add username as part of passed data
+		data.userName = this.userName;
         this.retrospectiveService.submitRetrospective(data).then(data => {
-           alert("Great Successs: " + data);
+			alert("Great Successs: " + data);
         }).catch(error => {
             alert("Error: " + error);
-        })
-    }
+        })	
+	}
 }

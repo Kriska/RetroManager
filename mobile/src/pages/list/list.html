@@ -5,23 +5,14 @@
 </ion-header>
 
 <ion-content>
-	<div class="greeting"><ion-label> Hello,  <span id="user" color="red"> {{userName}} </span></ion-label>
+	<div class="greeting"><ion-label> Hello,  <span id="user"> {{userName}} </span></ion-label>
 	<ion-label> Rate your latest sprint:</ion-label> </div>
     <form #submitForm="ngForm" (ngSubmit)="submitData(submitForm.value)">    
         <ion-row>
             <ion-col>
                 <ion-list inset>
                     <ion-list radio-group name="sprintWeather" ngModel>
-					<ion-item>
-					
-                       <!-- <ion-select name="sprintWeather" required ngModel>
-                            <ion-option value="sun">Sunny</ion-option>
-                            <ion-option value="sunAndClouds">Sunny with clouds</ion-option>
-                            <ion-option value="cloud">Cloudy</ion-option>
-                            <ion-option value="rain">Rainy</ion-option>
-                            <ion-option value="storm">Stormy</ion-option>
-                        </ion-select> -->
-						
+					<ion-item>					
                         <ion-label color="pink"> <ion-icon name="sunny"></ion-icon> Sunny</ion-label>
 						<ion-radio value="sunny"></ion-radio>
 						</ion-item>

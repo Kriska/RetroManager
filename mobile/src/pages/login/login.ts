@@ -20,6 +20,6 @@ export class LoginPage {
         this.loginService.login(credentials).then((success) => {
             alert("Greate Success login." + success)
 			this.navCtrl.push(ListPage, {userName: credentials.userName});
-        }).catch(error => alert("Error: " + error))}
-}
+        }).catch(error => alert("Error: " + error))
+	   }
 }
