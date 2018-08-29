@@ -3,7 +3,7 @@ import {HTTP} from '@ionic-native/http';
 
 @Injectable()
 export class RetrospectiveServiceProvider {
-    private RETRO_SERVICE_URL = 'http://192.168.0.103:8090/api/v1/retrospective';
+    private RETRO_SERVICE_URL = 'http://10.216.108.125:8090/api/v1/retrospective';
     private CONTENT_HEADER = {'Content-Type': 'application/json'};
 
     constructor(private http: HTTP) {}
