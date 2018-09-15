@@ -3,6 +3,7 @@ package retro.auth.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,16 +26,16 @@ public class LoginController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public HttpStatus authenticate(@RequestBody User credentials) {
+    public ResponseEntity authenticate(@RequestBody User credentials) {
         try {
             if (credentials.getUsername() != null && credentials.getPassword() != null) {
                 if (loginService.authenticate(credentials)) {
-                    return HttpStatus.OK;
+                    return ResponseEntity.status(HttpStatus.OK).body("{\"message\":\"Login successful\"}");
                 }
             }
-            return HttpStatus.UNAUTHORIZED;
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\":\"Login failed\"}");
         } catch (Exception e) {
-            return HttpStatus.BAD_REQUEST;
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"message\":\"Bad Request\"}");
         }
     }
 }
