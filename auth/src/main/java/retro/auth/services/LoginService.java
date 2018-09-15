@@ -5,11 +5,15 @@ import org.springframework.stereotype.Component;
 import retro.auth.models.User;
 import retro.auth.models.database.DatabaseManager;
 
+import java.util.Map;
+
 @Component
 public class LoginService {
 
     @Autowired
     private Utils utils;
+    @Autowired
+    private DatabaseManager dbManager;
 
     public LoginService() {
         //No-op
@@ -19,9 +23,9 @@ public class LoginService {
         String username = credentials.getUsername();
         String encodedPassword = utils.hashPassword(credentials.getPassword());
 
-        String dbPassword = DatabaseManager.getInstance().getAllUsers().get(username);
+        Map user = dbManager.getUser(username, encodedPassword);
 
-        if (dbPassword != null && dbPassword.equals(encodedPassword)) {
+        if (user.size() == 1) {
             return true;
         }
         return false;

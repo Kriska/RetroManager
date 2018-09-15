@@ -4,13 +4,15 @@ import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import retro.auth.services.Utils;
 
 @Component
 public class DatabaseManager {
 
-    private Utils utils = new Utils();
+    @Autowired
+    private Utils utils;
     public static DatabaseManager dbManager;
 
     private DatabaseManager() {
@@ -60,23 +62,27 @@ public class DatabaseManager {
         }
     }
 
-    public Map<String, String> getAllUsers() {
-        Map<String, String> credentials = new HashMap<>();
-        String resultsQuery = "SELECT username, password FROM users";
+    public Map<String, String> getUser(String username, String encodedPassword) {
+        Map<String, String> user = new HashMap<>();
+        String resultsQuery = "SELECT username, password FROM users WHERE username = (?) and password = (?)";
         try (Connection conn = getConnection();
-             Statement stm = conn.createStatement();
-             ResultSet rs = stm.executeQuery(resultsQuery)) {
-            while (rs.next()) {
-                String username = rs.getString("username");
-                String password = rs.getString("password");
-                credentials.put(username, password);
-                //  System.out.println(rs.getString("username") + " - " + rs.getString("password"));
+             PreparedStatement prepStm = conn.prepareStatement(resultsQuery)) {
+            prepStm.setString(1, username);
+            prepStm.setString(2, encodedPassword);
+            try (ResultSet rs = prepStm.executeQuery()) {
+                if (rs.next()) {
+                    String dbUsername = rs.getString("username");
+                    String dbPassword = rs.getString("password");
+                    user.put(dbUsername, dbPassword);
+                    //  System.out.println(rs.getString("username") + " - " + rs.getString("password"));
+                }
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        return credentials;
+        return user;
     }
+
 
     public void deleteUser(String username) {
         String deleteUser = "DELETE FROM users WHERE username = (?)";
@@ -91,7 +97,7 @@ public class DatabaseManager {
 
     // public static void main(String[] args) throws SQLException, ClassNotFoundException {
     // DatabaseManager dbm = new DatabaseManager();
-    // dbm.getAllUsers();
+    // dbm.getUser();
     // dbm.createTableUsers();
     // dbm.insertUserToDB("Stamat", "parola");
     // dbm.deleteUser("Stamat");
