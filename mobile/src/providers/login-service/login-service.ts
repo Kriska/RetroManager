@@ -3,7 +3,7 @@ import {HTTP} from '@ionic-native/http';
 
 @Injectable()
 export class LoginServiceProvider {
-    private LOGIN_SERVICE_URL = 'http://10.216.108.125:8080/api/security/authenticate';
+    private LOGIN_SERVICE_URL = 'http://192.168.43.232:8080/api/security/authenticate';
     private CONTENT_HEADER = {'Content-Type': 'application/json'};
 
     constructor(private http: HTTP) {}
@@ -13,7 +13,7 @@ export class LoginServiceProvider {
             this.http.setDataSerializer("json");
             this.http.post(this.LOGIN_SERVICE_URL, credentials, this.CONTENT_HEADER).then(
                 data => {
-                    alert("[LoginServiceProvider]: Success");
+                    console.log("[LoginServiceProvider]: Success");
 
                     resolve(data.data);
                 }).catch(error => {

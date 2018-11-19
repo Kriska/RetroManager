@@ -11,15 +11,14 @@ import {ListPage} from '../list/list';
 export class LoginPage {
 
     constructor(private navCtrl: NavController,
-        private navParams: NavParams,
-        private loginService: LoginServiceProvider) {
-		}
+                private navParams: NavParams,
+                private loginService: LoginServiceProvider) {}
 
     login(credentials:any) {
-        alert("About to login");
         this.loginService.login(credentials).then((success) => {
-            alert("Greate Success login." + success)
-			this.navCtrl.push(ListPage, {userName: credentials.userName});
+            console.log("User authenticated successfully.");
+             
+            this.navCtrl.push(ListPage, {userName: credentials.userName});
         }).catch(error => alert("Error: " + error))
-	   }
+    }
 }

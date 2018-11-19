@@ -7,7 +7,7 @@
 <ion-content>
 	<div class="greeting"><ion-label> Hello,  <span id="user"> {{userName}} </span></ion-label>
 	<ion-label> Rate your latest sprint:</ion-label> </div>
-    <form #submitForm="ngForm" (ngSubmit)="submitData(submitForm.value)">    
+    <form #submitForm="ngForm" (ngSubmit)="submitData(submitForm.value, submitForm)">    
         <ion-row>
             <ion-col>
                 <ion-list inset>
